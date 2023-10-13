@@ -33,15 +33,14 @@ class AboutSymbols < Neo::Koan
   # Why do we convert the list of symbols to strings and then compare
   # against the string value rather than against symbols?
 
-  # Ignoring this as its causing segmentation error in Ruby 3.2.2
-  # in_ruby_version("mri") do
-  #   RubyConstant = "What is the sound of one hand clapping?"
-  #   def test_constants_become_symbols
-  #     all_symbols_as_strings = Symbol.all_symbols.map { |x| x.to_s }
+  in_ruby_version("mri") do
+    RubyConstant = "What is the sound of one hand clapping?"
+    def test_constants_become_symbols
+      all_symbols_as_strings = Symbol.all_symbols.map { |x| x.to_s }
 
-  #     assert_equal false, all_symbols_as_strings.include?("What is the sound of one hand clapping?")
-  #   end
-  # end
+      assert_equal false, all_symbols_as_strings.include?("What is the sound of one hand clapping?")
+    end
+  end
 
   def test_symbols_can_be_made_from_strings
     string = "catsAndDogs"
